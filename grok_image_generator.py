@@ -22,14 +22,14 @@ class GrokImageGenerator:
         """
         self.api_key = api_key
         self.download_folder = download_folder
-        self.base_url = "https://api.x.ai/v1/images/generations"
+        self.base_url = "https://x.com/i/grok"
         
         # Create download folder if it doesn't exist
         Path(self.download_folder).mkdir(parents=True, exist_ok=True)
         print(f"✓ Download folder created/verified: {self.download_folder}")
     
     def generate_image(self, prompt, model="grok-2-vision-1212", size="1024x1024", 
-                       quality="standard", style="natural"):
+                       quality="medium", style="natural"):
         """
         Generate an image using Grok API
         
@@ -37,7 +37,7 @@ class GrokImageGenerator:
             prompt (str): Text description of the image to generate
             model (str): Model to use (default: grok-2-vision-1212)
             size (str): Image size (options: 256x256, 512x512, 1024x1024, 1792x1024, 1024x1792)
-            quality (str): Image quality (standard or hd)
+            quality (str): Image quality (low, medium, or high)
             style (natural or vivid)
         
         Returns:
@@ -152,7 +152,7 @@ def main():
     # Options
     print("\n⚙️  Options (press Enter to use defaults):")
     print("  - Size: 1024x1024 (or: 256x256, 512x512, 1792x1024, 1024x1792)")
-    print("  - Quality: standard (or: hd)")
+    print("  - Quality: medium (or: low, high)")
     print("  - Style: natural (or: vivid)")
     
     image_count = 0
@@ -178,7 +178,7 @@ def main():
             if size:
                 kwargs['size'] = size
             
-            quality = input("Quality (default: standard): ").strip()
+            quality = input("Quality (default: medium): ").strip()
             if quality:
                 kwargs['quality'] = quality
             
